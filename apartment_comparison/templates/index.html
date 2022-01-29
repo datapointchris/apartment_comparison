@@ -48,28 +48,31 @@
                     <td class="third">{% endif %}
                         {% if loop.index % 3 == 0 %}
                     <td class="third">{% endif %}
-                        <h2>{{ feature.upper() }}</h2>
                         {% if feature_type_map.get(feature) == 'integer' %}
-                        <input class="bigbox" type="number" name="{{ feature }}"
-                            value="{{ value }}">
+                        <h2>{{ feature.upper() }}</h2>
+                        <input class="bigbox" type="text" size="20" name="{{ feature }}"
+                        value="{{ value }}">
                         {% endif %}
                         {% if feature_type_map.get(feature) == 'text' %}
-                        <input type="text" class="bigbox" size="50" name="{{ feature }}"
-                            value="{{ value }}">
-                        </textarea>
-                        {% endif %}
-                        {% if feature_type_map.get(feature) == 'boolean' %}
-                        {% if value == 1 %}
-                        <label class="checkboxes">
+                        <h2>{{ feature.upper() }}</h2>
+                        <input type="text" class="bigbox" size="20" name="{{ feature }}"
+                        value="{{ value }}">
+                    </textarea>
+                    {% endif %}
+                    {% if feature_type_map.get(feature) == 'boolean' %}
+                    {% if value == 1 %}
+                    <label class="checkboxes">
+                            <h2>{{ feature.upper() }}
                             <input type="checkbox" id="{{ feature }}-true"
-                                name="{{ feature }}" value=1 checked="checked" />
-                            <span class="checkmark"></span>
+                            name="{{ feature }}" value=1 checked="checked" />
+                            <span class="checkmark"></span></h2>
                         </label>
                         {% else %}
                         <label class="checkboxes">
+                            <h2>{{ feature.upper() }}
                             <input type="checkbox" id="{{ feature }}-true"
                                 name="{{ feature }}" value=1 />
-                            <span class="checkmark"></span>
+                            <span class="checkmark"></span></h2>
                         </label>
                         {% endif %}
                         {% endif %}
