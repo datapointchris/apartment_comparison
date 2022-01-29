@@ -7,8 +7,14 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+Flask = "^2.0.2"
+livereload = "^2.6.3"
+jupyter = "^1.0.0"
+ipykernel = "^6.7.0"
+pandas = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
