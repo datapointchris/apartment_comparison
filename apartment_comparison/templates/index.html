@@ -31,81 +31,54 @@
             <input type="hidden" id="name" name="name" value="{{ name }}">
             <input type="hidden" id="address" name="address" value="{{ address }}">
             <input type="hidden" id="url" name="url" value="{{ url }}">
-            <table class="feature-list">
-                <tr>
-                    <td>
-                        <h1 class="title">{{ name.upper() }}</h1>
-                        <h2>{{ address }}</h2>
-                        <h2><a href="{{ url }}" target="_blank">{{ url }}</a></h2>
-                    </td>
-                </tr>
-            </table>
-            <table class="feature-list">
+            <div class="feature-list">
+                <h1 class="title">{{ name.upper() }}</h1>
+                <h2>{{ address }}</h2>
+                <h2><a href="{{ url }}" target="_blank">{{ url }}</a></h2>
+            </div>
+            <div id="apt-features">
                 {% for feature, value in current_apt.items() %}
-                {% if loop.index % 3 == 1 %}<tr>
-                    <td class="third">{% endif %}
-                        {% if loop.index % 3 == 2 %}
-                    <td class="third">{% endif %}
-                        {% if loop.index % 3 == 0 %}
-                    <td class="third">{% endif %}
-                        {% if feature_type_map.get(feature) == 'integer' %}
-                        <h2>{{ feature.upper() }}</h2>
-                        <input class="bigbox" type="text" size="20" name="{{ feature }}"
+                <div class="feature-box">
+                    {% if feature_type_map.get(feature) == 'integer' %}
+                    <h2>{{ feature.upper() }}</h2>
+                    <input class="bigbox" type="text" size="20" name="{{ feature }}"
                         value="{{ value }}">
-                        {% endif %}
-                        {% if feature_type_map.get(feature) == 'text' %}
-                        <h2>{{ feature.upper() }}</h2>
-                        <input type="text" class="bigbox" size="20" name="{{ feature }}"
+                    {% endif %}
+                    {% if feature_type_map.get(feature) == 'text' %}
+                    <h2>{{ feature.upper() }}</h2>
+                    <input type="text" class="bigbox" size="20" name="{{ feature }}"
                         value="{{ value }}">
                     </textarea>
                     {% endif %}
                     {% if feature_type_map.get(feature) == 'boolean' %}
                     {% if value == 1 %}
                     <label class="checkboxes">
-                            <h2>{{ feature.upper() }}
+                        <h2>{{ feature.upper() }}
                             <input type="checkbox" id="{{ feature }}-true"
-                            name="{{ feature }}" value=1 checked="checked" />
-                            <span class="checkmark"></span></h2>
-                        </label>
-                        {% else %}
-                        <label class="checkboxes">
-                            <h2>{{ feature.upper() }}
+                                name="{{ feature }}" value=1 checked="checked" />
+                            <span class="checkmark"></span>
+                        </h2>
+                    </label>
+                    {% else %}
+                    <label class="checkboxes">
+                        <h2>{{ feature.upper() }}
                             <input type="checkbox" id="{{ feature }}-true"
                                 name="{{ feature }}" value=1 />
-                            <span class="checkmark"></span></h2>
-                        </label>
-                        {% endif %}
-                        {% endif %}
-                        {% if loop.index % 3 == 1 %}
-                    </td>{% endif %}
-                    {% if loop.index % 3 == 2 %}
-                    </td>{% endif %}
-                    {% if loop.index % 3 == 0 %}
-                    </td>
-                </tr>{% endif %}
+                            <span class="checkmark"></span>
+                        </h2>
+                    </label>
+                    {% endif %}
+                    {% endif %}
+                </div>
                 {% endfor %}
-                <!-- Clean up end of table if there are partial columns -->
-                {% if current_apt|length % 3 == 1 %}
-                <td class="third"></td>
-                <td class="third"></td>
-                </tr>{% endif %}
-                {% if current_apt|length % 3 == 2 %}
-                <td class="third"></td>
-                </tr>{% endif %}
-                <tr>
-                    <td colspan="3">
-                        <h2>NOTES</h2>
-                        <textarea class="bigbox" rows="5" cols="90" name="notes">
-                    {{ notes }}
-                </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <input class="bigbox" type="submit" value="Edit Apartment Info">
-                    </td>
-                </tr>
-            </table>
+            </div>
+            <div class="feature-list">
+                <h2>NOTES</h2>
+                <textarea class="bigbox" rows="5" cols="90" name="notes">
+                    {{ notes }}</textarea>
+                <br /><br />
+                <input class="bigbox" type="submit" value="Edit Apartment Info">
+            </div>
         </form>
     </div>
 
