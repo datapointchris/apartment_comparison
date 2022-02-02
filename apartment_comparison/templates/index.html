@@ -52,7 +52,7 @@
                     <h1 class="title">{{ name.upper() }}</h1>
                     <h2>
                         <a href="http://www.google.com/maps/place/{{ address }}"
-                            target="_blank">{{address }}</a>
+                            target="_blank">{{ address }}</a>
                     </h2>
                     <h2><a href="{{ url }}" target="_blank">{{ url }}</a></h2>
                 </div>
@@ -60,20 +60,19 @@
                     {% for feature, value in current_apt.items() %}
                     <div class="feature-box">
                         {% if feature_type_map.get(feature) == 'integer' %}
-                        <h2>{{ feature.upper() }}</h2>
+                        <h2>{{ feature.replace('_', ' ').upper() }}</h2>
                         <input class="bigbox" type="text" size="20" name="{{ feature }}"
                             value="{{ value }}">
                         {% endif %}
                         {% if feature_type_map.get(feature) == 'text' %}
-                        <h2>{{ feature.upper() }}</h2>
+                        <h2>{{ feature.replace('_', ' ').upper() }}</h2>
                         <input type="text" class="bigbox" size="20" name="{{ feature }}"
                             value="{{ value }}">
-                        </textarea>
                         {% endif %}
                         {% if feature_type_map.get(feature) == 'boolean' %}
                         {% if value == 1 %}
                         <label class="checkboxes">
-                            <h2>{{ feature.upper() }}
+                            <h2>{{ feature.replace('_', ' ').upper() }}
                                 <input type="checkbox" id="{{ feature }}-true"
                                     name="{{ feature }}" value=1 checked="checked" />
                                 <span class="checkmark"></span>
@@ -81,7 +80,7 @@
                         </label>
                         {% else %}
                         <label class="checkboxes">
-                            <h2>{{ feature.upper() }}
+                            <h2>{{ feature.replace('_', ' ').upper() }}
                                 <input type="checkbox" id="{{ feature }}-true"
                                     name="{{ feature }}" value=1 />
                                 <span class="checkmark"></span>

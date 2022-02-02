@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+</head>
+
+<body>
+    <div id="header">
+        <h1>Manage Apartments</h1>
+    </div>
+    <div id="leftcolumn">
+        <ul>
+            {% for apartment in apartments %}
+            {% if apartment.get('id') == aptid %}
+            <li><a class="active" href="#">{{ apartment.get('name') }}</a></li>
+            {% else %}
+            <li><a href="/manage/{{ apartment.get('id') }}">{{ apartment.get('name')
+                    }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="content">
+        <div id="apartment">
+            <div class="feature-list">
+                <form method="POST" action="{{ url_for('update_apartment') }}">
+                    <input type="hidden" id="id" name="id" value="{{ aptid }}">
+                    <h1 class="title">{{ name.upper() }}</h1>
+                    <h2>{{ name.replace('_', ' ').upper() }}</h2>
+                    <input type="text" class="bigbox" size="20" name="name"
+                        value="{{ name }}">
+                    <h2>{{ address.replace('_', ' ').upper() }}</h2>
+                    <input type="text" class="bigbox" size="20" name="address"
+                        value="{{ address }}">
+                    <h2>{{ url.replace('_', ' ').upper() }}</h2>
+                    <input type="text" class="bigbox" size="20" name="url"
+                        value="{{ url }}">
+                    <br /><br />
+                    <input class="bigbox" type="submit" value="Update Apartment">
+                </form>
+            </div>
+            <div class="feature-list">
+                <form method="POST" action="{{ url_for('delete_apartment') }}">
+                    <input type="hidden" id="id" name="id" value="{{ aptid }}">
+                    <input class="bigbox" type="submit" value="DELETE Apartment">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

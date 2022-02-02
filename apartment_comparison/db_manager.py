@@ -44,7 +44,19 @@ class ApartmentsDBManager:
         insert_query_sql = self._create_column_insert_query(columns)
         self._execute(insert_query_sql, params=apartment)
 
-    def update_apartment(self, info):
+    def update_apartment(self, apartment):
+        # id, name, address, url
+        values = tuple([
+            apartment['name'],
+            apartment['address'],
+            apartment['url'],
+            apartment['id'],
+        ])
+        print(values)
+        manage_sql = 'update apartments set name = ?, address = ?, url = ? where id = ?'
+        self._execute(manage_sql, values)
+
+    def update_features(self, info):
         id = info.pop('id')
         info.pop('name')
         info.pop('address')
@@ -59,9 +71,6 @@ class ApartmentsDBManager:
         apartment = self._execute(f'select * from apartments where id = {id}').fetchone()
         if apartment:
             self._execute(f'delete from apartments where id = {id}')
-            return f'Deleted apartment: {dict(apartment)}'
-        else:
-            return f'No apartment with id: {id}'
 
     def execute_sql_file(self, file):
         with open(file, 'r') as f:

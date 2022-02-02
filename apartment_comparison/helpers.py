@@ -14,4 +14,3 @@ def convert_data_types_from_strings(info, mapping):
                     converted[k] = int(v)
 
     return converted
-    
