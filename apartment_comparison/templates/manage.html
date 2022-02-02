@@ -11,7 +11,9 @@
 
 <body>
     <div id="header">
-        <h1>Manage Apartments</h1>
+            <span class="link"><a href="/">Apartment Comparison</a></span>
+            <span class="main">Manage Apartments</span>
+            <span class="link"><a href="/manage/">Manage Apartments</a></span>
     </div>
     <div id="leftcolumn">
         <ul>
@@ -28,26 +30,25 @@
     <div id="content">
         <div id="apartment">
             <div class="feature-list">
+                <h1 class="title">{{ name.upper() }}</h1>
+                <h2>Edit Apartment Data:</h2>
                 <form method="POST" action="{{ url_for('update_apartment') }}">
                     <input type="hidden" id="id" name="id" value="{{ aptid }}">
-                    <h1 class="title">{{ name.upper() }}</h1>
-                    <h2>{{ name.replace('_', ' ').upper() }}</h2>
-                    <input type="text" class="bigbox" size="20" name="name"
+                    <input type="text" class="manage-box" size="90" name="name"
                         value="{{ name }}">
-                    <h2>{{ address.replace('_', ' ').upper() }}</h2>
-                    <input type="text" class="bigbox" size="20" name="address"
+                    <input type="text" class="manage-box" size="90" name="address"
                         value="{{ address }}">
-                    <h2>{{ url.replace('_', ' ').upper() }}</h2>
-                    <input type="text" class="bigbox" size="20" name="url"
+                    <input type="text" class="manage-box" size="90" name="url"
                         value="{{ url }}">
-                    <br /><br />
+                    <br /><br /><br />
                     <input class="bigbox" type="submit" value="Update Apartment">
                 </form>
             </div>
+            <br /><br /><br /><br /><br /><br />
             <div class="feature-list">
                 <form method="POST" action="{{ url_for('delete_apartment') }}">
                     <input type="hidden" id="id" name="id" value="{{ aptid }}">
-                    <input class="bigbox" type="submit" value="DELETE Apartment">
+                    <input class="manage-box" type="submit" value="DELETE Apartment">
                 </form>
             </div>
         </div>

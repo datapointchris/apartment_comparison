@@ -64,23 +64,43 @@ h2 {
 }
 
 #header {
-  position      : absolute;
-  left          : 50%;
-  top           : 4%;
-  transform     : translate(-50%, -50%);
-  height        : $header-height;
-  width         : 98%;
-  background    : $dark-gray;
-  font-size     : x-large;
-  margin        : 15px 0px;
-  text-align    : center;
-  vertical-align: middle;
-  color         : $text-color;
-  box-shadow    : $shadow-3d;
-  z-index       : 50;
-  line-height   : 30px;
-  border-left   : 1px solid #999999;
-  border-top    : 4px solid #bbbbbb;
+  position       : absolute;
+  left           : 50%;
+  top            : 4%;
+  transform      : translate(-50%, -50%);
+  height         : $header-height;
+  width          : 98%;
+  background     : $dark-gray;
+  font-size      : x-large;
+  margin         : 15px 0px;
+  // padding: 0px 50px;
+  text-align     : center;
+  vertical-align : middle;
+  color          : $text-color;
+  box-shadow     : $shadow-3d;
+  z-index        : 50;
+  line-height    : 90px;
+  border-left    : 1px solid #999999;
+  border-top     : 4px solid #bbbbbb;
+  display        : flex;
+  justify-content: space-around;
+
+  .main {
+    list-style: none;
+    font-size : 2.5em;
+  }
+
+  .link a {
+    list-style: none;
+    font-size : 1em;
+    color     : $text-color;
+
+    :visited {
+      color: $text-color;
+    }
+  }
+
+
 }
 
 #leftcolumn {
@@ -166,7 +186,7 @@ h2 {
   left            : $navigation-width;
   width           : 75%;
   padding         : 10px;
-  padding-bottom: 80px;
+  padding-bottom  : 80px;
   margin-left     : 50px;
   background-color: $cool-blue;
   box-shadow      : $shadow-3d;
@@ -224,6 +244,27 @@ textarea.bigbox {
   font-size       : large;
   box-shadow      : $shadow-3d;
   background-color: #222;
+}
+
+.manage-box {
+  margin          : 50px;
+  padding         : 10px;
+  vertical-align  : top;
+  line-height     : 4em;
+  font-size       : $h2-font-size;
+  text-align      : center;
+  color           : $text-color;
+  border          : 0;
+  box-shadow      : $shadow-3d;
+  background-color: $dark-gray;
+  background-color: #222;
+
+}
+
+input[type="submit"].manage-box {
+  padding-left : 50px;
+  padding-right: 50px;
+  border-radius: 10px;
 }
 
 /// ########## ///
