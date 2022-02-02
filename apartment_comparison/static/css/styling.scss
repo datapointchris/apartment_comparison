@@ -148,23 +148,37 @@ h2 {
   }
 }
 
+#add-feature {
+  margin        : auto;
+  margin-top    : 100px;
+  margin-bottom : 100px;
+  width         : 50%;
+  padding       : 25px;
+  text-align    : center;
+  box-shadow    : $shadow-3d;
+  vertical-align: top;
+  line-height   : 4em;
+}
+
 #content {
   position        : absolute;
   top             : $header-height;
   left            : $navigation-width;
   width           : 75%;
   padding         : 10px;
+  padding-bottom: 80px;
   margin-left     : 50px;
   background-color: $cool-blue;
   box-shadow      : $shadow-3d;
 }
 
 #apt-features {
-  display: grid;
+  display              : grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px 30px;
-  padding: 50px;
+  gap                  : 50px 30px;
+  padding              : 50px;
 }
+
 
 .feature-list {
   margin        : auto;
@@ -186,7 +200,6 @@ h2 {
 .feature-box {
   padding       : 25px;
   text-align    : center;
-  vertical-align: top;
   box-shadow    : $shadow-3d;
   vertical-align: top;
   line-height   : 4em;

@@ -2,7 +2,7 @@ from flask import Flask
 from apartment_comparison.db_manager import ApartmentsDBManager
 
 db = ApartmentsDBManager('apartments.db')
-db.execute_sql_file('apartment_comparison/static/sql/create_table.sql')
+db.execute_sql_file('apartment_comparison/static/sql/create_tables.sql')
 
 
 def create_app():

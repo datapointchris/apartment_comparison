@@ -69,3 +69,25 @@ class ApartmentsDBManager:
                 cursor = conn.cursor()
                 sql = f.read()
                 cursor.executescript(sql)
+
+    def get_feature_types(self):
+        rows = self._execute('select name, type from feature_types_mapping').fetchall()
+        tuples = [tuple(row) for row in rows]
+        return {t[0]: t[1] for t in tuples}
+
+    def _add_feature_to_apartments(self, column_name, column_type):
+        alter_table_sql = (
+            f'alter table apartments add column {column_name} {column_type};'
+        )
+        self._execute(alter_table_sql)
+
+    def _add_feature_to_feature_map(self, column_name, column_type):
+        update_mapping_sql = f"""
+        insert into feature_types_mapping(name, type)
+        values ('{column_name}', '{column_type}');
+        """
+        self._execute(update_mapping_sql)
+
+    def add_feature(self, feature_name, column_name):
+        self._add_feature_to_apartments(feature_name, column_name)
+        self._add_feature_to_feature_map(feature_name, column_name)
