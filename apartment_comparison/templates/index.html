@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apartment Comparison</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
 </head>
 
 <body>
@@ -43,19 +44,19 @@
     </div>
     <div id="content">
         <div id="apartment">
+            <div class="feature-list">
+                <h1 class="title">{{ name.upper() }}</h1>
+                <h2>
+                    <a href="http://www.google.com/maps/place/{{ address }}"
+                        target="_blank">{{ address }}</a>
+                </h2>
+                <h2><a href="{{ url }}" target="_blank">{{ url }}</a></h2>
+            </div>
             <form method="POST" action="{{ url_for('index') }}">
                 <input type="hidden" id="id" name="id" value="{{ aptid }}">
                 <input type="hidden" id="name" name="name" value="{{ name }}">
                 <input type="hidden" id="address" name="address" value="{{ address }}">
                 <input type="hidden" id="url" name="url" value="{{ url }}">
-                <div class="feature-list">
-                    <h1 class="title">{{ name.upper() }}</h1>
-                    <h2>
-                        <a href="http://www.google.com/maps/place/{{ address }}"
-                            target="_blank">{{ address }}</a>
-                    </h2>
-                    <h2><a href="{{ url }}" target="_blank">{{ url }}</a></h2>
-                </div>
                 <div id="apt-features">
                     {% for feature, value in current_apt.items() %}
                     <div class="feature-box">

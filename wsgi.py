@@ -1,19 +1,27 @@
 """App Entry Point"""
-from livereload import Server
 import platform
 from apartment_comparison import create_app
 
+develop = False
 
 app = create_app()
 
 if __name__ == '__main__':
-    server = Server(app)
-    server.watch('static/')
-    if platform.system() == 'Darwin':
-        # Mac
-        server.serve(port=4600, host='0.0.0.0')
-        # app.run(host='0.0.0.0', port='4700', debug=True)
+    if develop:
+        from livereload import Server
+
+        server = Server(app)
+        server.watch('static/')
+        if platform.system() == 'Darwin':
+            # Mac
+            server.serve(port=4200, host='0.0.0.0')
+        else:
+            # Linux Box
+            server.serve(port=8200)
     else:
-        # Linux Box
-        server.serve(port=5100, host='0.0.0.0')
-        # app.run(host='0.0.0.0', port='5000', debug=True)
+        if platform.system() == 'Darwin':
+            # Mac
+            app.run(port=4200, host='0.0.0.0')
+        else:
+            # Linux Box
+            app.run(port='8200')
