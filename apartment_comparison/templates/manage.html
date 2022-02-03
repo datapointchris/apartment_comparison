@@ -11,11 +11,11 @@
 
 <body>
     <div id="header">
-            <span class="link"><a href="/">Apartment Comparison</a></span>
-            <span class="main">Manage Apartments</span>
-            <span class="link"><a href="/manage/">Manage Apartments</a></span>
+        <span class="link"><a href="/">Apartment Comparison</a></span>
+        <span class="main">Apartment Comparison</span>
+        <span class="link"><a href="/manage/" class="selected">Manage Apartments</a></span>
     </div>
-    <div id="leftcolumn">
+    <div id="apartment-list">
         <ul>
             {% for apartment in apartments %}
             {% if apartment.get('id') == aptid %}
@@ -41,14 +41,14 @@
                     <input type="text" class="manage-box" size="90" name="url"
                         value="{{ url }}">
                     <br /><br /><br />
-                    <input class="bigbox" type="submit" value="Update Apartment">
+                    <input class="manage-box" type="submit" value="Update Apartment">
                 </form>
             </div>
             <br /><br /><br /><br /><br /><br />
             <div class="feature-list">
                 <form method="POST" action="{{ url_for('delete_apartment') }}">
                     <input type="hidden" id="id" name="id" value="{{ aptid }}">
-                    <input class="manage-box" type="submit" value="DELETE Apartment">
+                    <input class="manage-box warning" type="submit" value="DELETE Apartment">
                 </form>
             </div>
         </div>

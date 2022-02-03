@@ -11,11 +11,11 @@
 
 <body>
     <div id="header">
-        <span class="link"><a href="/">Apartment Comparison</a></span>
+        <span class="link"><a href="/" class="selected">Apartment Comparison</a></span>
         <span class="main">Apartment Comparison</span>
         <span class="link"><a href="/manage/">Manage Apartments</a></span>
-</div>
-    <div id="leftcolumn">
+    </div>
+    <div id="apartment-list">
         <ul>
             {% for apartment in apartments %}
             {% if apartment.get('id') == aptid %}
@@ -26,22 +26,20 @@
             {% endif %}
             {% endfor %}
         </ul>
-        <br />
-        <br />
-        <div id="add-feature">
-            <h2>Add a New Feature:</h2>
-            <form method="POST" action="{{ url_for('add_feature') }}">
-                <input type="hidden" id="aptid" name="aptid" value="{{ aptid }}">
-                <input class="bigbox" type="text" size="20" name="name" id="name">
-                <h2>Type:</h2>
-                <select class="bigbox" name="type" id="type">
-                    <option value="text">text</option>
-                    <option value="integer">integer</option>
-                    <option value="boolean">boolean</option>
-                </select><br />
-                <input class="bigbox" type="submit" value="Add New Feature">
-            </form>
-        </div>
+    </div>
+    <div id="add-feature">
+        <h2>Add a New Feature:</h2>
+        <form method="POST" action="{{ url_for('add_feature') }}">
+            <input type="hidden" id="aptid" name="aptid" value="{{ aptid }}">
+            <input class="bigbox" type="text" size="20" name="name" id="name">
+            <h2>Type:</h2>
+            <select class="bigbox" name="type" id="type">
+                <option value="text">text</option>
+                <option value="integer">integer</option>
+                <option value="boolean">boolean</option>
+            </select><br />
+            <input class="bigbox" type="submit" value="Add New Feature">
+        </form>
     </div>
     <div id="content">
         <div id="apartment">
@@ -95,10 +93,10 @@
                 </div>
                 <div class="feature-list">
                     <h2>NOTES</h2>
-                    <textarea class="bigbox" rows="5" cols="90" name="notes">
+                    <textarea class="bigbox" rows="20" cols="150" name="notes">
                     {{ notes }}</textarea>
-                    <br /><br />
-                    <input class="bigbox" type="submit" value="Edit Apartment Info">
+                    <br /><br /><br /><br /><br /><br /><br /><br />
+                    <input class="manage-box" type="submit" value="Edit Apartment Info">
                 </div>
             </form>
         </div>

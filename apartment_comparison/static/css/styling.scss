@@ -1,7 +1,7 @@
 $header-height    : 100px;
 $navigation-width : 20%;
 $cool-blue        : rgb(0, 68, 88);
-$text-color       : #f5f5f5;
+$text-color       : #f0f0f0;
 $dark-gray        : #444;
 $nav-border       : 5px solid #919191;
 $h2-font-size     : 1.8em;
@@ -18,20 +18,20 @@ $dark-shadow : rgba(16, 16, 16, 0.4);
 // Negative values place shadow above
 // transition from light to dark and spread out more
 
-$shadow-3d-test : 1px 3px 1px $light-shadow,
-1px 3px 1px $light-shadow,
-1px 4px 1px $light-shadow,
-1px 4px 1px $light-shadow,
-1px 4px 1px $light-shadow,
-1px 4px 1px $light-shadow,
-1px 4px 3px $light-shadow,
-1px 5px 3px $light-shadow,
-1px 7px 3px $light-shadow,
-1px 8px 3px $light-shadow,
-1px 20px 20px $dark-shadow,
-1px 20px 20px $med-shadow,
-1px 25px 30px $med-shadow,
-1px 25px 40px $dark-shadow;
+$shadow-3d-apt : 1px 3px 1px $dark-shadow,
+1px 3px 1px $dark-shadow,
+1px 4px 1px $dark-shadow,
+1px 4px 1px $dark-shadow,
+1px 4px 1px $dark-shadow,
+1px 4px 1px $dark-shadow,
+1px 4px 3px $dark-shadow,
+1px 5px 3px $dark-shadow,
+1px 7px 15px $med-shadow,
+11px 8px 15px $med-shadow,
+8px 8px 10px $med-shadow,
+3px 18px 16px $dark-shadow,
+5px 20px 22px $med-shadow,
+6px 8px 20px $light-shadow;
 
 $shadow-3d : 1px 1px 1px $light-shadow,
 1px 2px 1px $light-shadow,
@@ -48,9 +48,21 @@ $shadow-3d : 1px 1px 1px $light-shadow,
 1px 25px 15px $med-shadow,
 1px 30px 20px $dark-shadow;
 
+$shadow-3d-nav : 1px 1px 1px $light-shadow,
+1px 2px 1px $light-shadow,
+1px 3px 1px $light-shadow,
+2px 3px 1px $light-shadow,
+1px 9px 4px $dark-shadow,
+1px 11px 4px $med-shadow,
+1px 13px 8px $med-shadow,
+1px 15px 10px $dark-shadow;
+
 body {
-  font-family     : Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #222;
+  font-family          : Verdana, Geneva, Tahoma, sans-serif;
+  background-color     : #222;
+  display              : grid;
+  grid-template-rows   : $header-height min-content 1fr;
+  grid-template-columns: $navigation-width 1fr;
 }
 
 h2 {
@@ -64,18 +76,13 @@ h2 {
 }
 
 #header {
-  position       : absolute;
-  left           : 50%;
-  top            : 4%;
-  transform      : translate(-50%, -50%);
-  height         : $header-height;
-  width          : 98%;
+  grid-row       : 1;
+  grid-column    : 1 / span 2;
+  width          : 96%;
+  margin         : auto;
+  margin-top     : 20px;
   background     : $dark-gray;
   font-size      : x-large;
-  margin         : 15px 0px;
-  // padding: 0px 50px;
-  text-align     : center;
-  vertical-align : middle;
   color          : $text-color;
   box-shadow     : $shadow-3d;
   z-index        : 50;
@@ -87,30 +94,53 @@ h2 {
 
   .main {
     list-style: none;
-    font-size : 2.5em;
+    font-size : 2.75em;
   }
 
   .link a {
-    list-style: none;
-    font-size : 1em;
-    color     : $text-color;
+    list-style     : none;
+    font-size      : 1.5em;
+    padding: 10px;
+    color          : $text-color;
+    text-decoration: none;
+    text-shadow    : $shadow-3d-nav;
+    border-top: 2px solid $text-color;
+    border-left: 2px solid $light-shadow;
+    border-right: 4px solid $med-shadow;
+    border-bottom: 4px solid $dark-shadow;
+    border-radius: 8px;
 
     :visited {
       color: $text-color;
     }
+
+    &:hover {
+      color: white;
+      border-top: 4px solid $light-shadow;
+      border-left: 4px solid $med-shadow;
+      border-right: 2px solid $med-shadow;
+      border-bottom: 2px solid $light-shadow;
+      border-style: inset;
+    }
+
+    &.selected {
+      border-top: 4px solid $light-shadow;
+      border-left: 4px solid $med-shadow;
+      border-right: 2px solid $med-shadow;
+      border-bottom: 2px solid $light-shadow;
+      border-style: inset;
+    }
+
   }
-
-
 }
 
-#leftcolumn {
-  position        : absolute;
-  top             : $header-height + 60px;
-  left            : 25px;
-  width           : $navigation-width;
-  background-color: $cool-blue;
-  box-shadow      : $shadow-3d;
-  z-index         : 100;
+#apartment-list {
+  grid-row   : 2;
+  grid-column: 1;
+  z-index    : 100;
+  margin     : 80px 40px;
+  width      : 95%;
+  box-shadow : $shadow-3d-apt;
 
   >ul {
     list-style-type : none;
@@ -169,25 +199,28 @@ h2 {
 }
 
 #add-feature {
-  margin        : auto;
-  margin-top    : 100px;
-  margin-bottom : 100px;
-  width         : 50%;
-  padding       : 25px;
-  text-align    : center;
-  box-shadow    : $shadow-3d;
-  vertical-align: top;
-  line-height   : 4em;
+  grid-row        : 3;
+  grid-column     : 1;
+  margin          : auto;
+  margin-top      : 40px;
+  width           : 75%;
+  padding         : 25px;
+  padding-bottom  : 50px;
+  text-align      : center;
+  box-shadow      : $shadow-3d;
+  vertical-align  : top;
+  line-height     : 4em;
+  background-color: $cool-blue;
 }
 
 #content {
-  position        : absolute;
-  top             : $header-height;
-  left            : $navigation-width;
-  width           : 75%;
+  grid-row        : 2 / span 3;
+  grid-column     : 2;
+  width           : 92%;
   padding         : 10px;
-  padding-bottom  : 80px;
+  padding-bottom  : 100px;
   margin-left     : 50px;
+  margin-bottom   : 100px;
   background-color: $cool-blue;
   box-shadow      : $shadow-3d;
 }
@@ -265,7 +298,26 @@ input[type="submit"].manage-box {
   padding-left : 50px;
   padding-right: 50px;
   border-radius: 10px;
+
+  &:hover {
+    text-decoration: underline;
+    transform      : scale(120%);
+  }
 }
+
+.warning {
+  color         : red;
+  font-weight   : bold;
+  font-size     : 2.5em;
+  letter-spacing: 4px;
+  text-shadow   :
+    1px 1px 3px $dark-shadow,
+    2px 2px 5px $dark-shadow,
+    3px 3px 4px $med-shadow,
+    2px 2px 3px $light-shadow,
+    2px 2px 3px $light-shadow;
+}
+
 
 /// ########## ///
 /// CHECKBOXES ///
